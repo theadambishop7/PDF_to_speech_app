@@ -4,11 +4,11 @@
 <style>
 .loader {
   border: 8px solid #f3f3f3; /* Light grey */
-  border-top: 8px solid #3498db; /* Blue */
+  border-top: 8px solid #F44335; /* Red */
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 1s linear infinite;
+  animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
@@ -28,16 +28,16 @@
           <form method="post" enctype="multipart/form-data" action="{{ url_for('convert') }}">
             <Label for="file">File</Label>
             <input id="file" name="file" type="file" />
-              <button type="submit" class="btn btn-outline-secondary btn-sm px-4 gap-3 fs-6">Upload</button>
+              <button id="upload-button" type="submit" class="btn btn-outline-secondary btn-sm px-4 gap-3 fs-6">Upload</button>
           </form>
       </div>
     </div>
 </div>
-<!--{% if 'loading' in messages %}-->
-<!--<div class="container px-4 d-flex align-items-center justify-content-center">-->
-<!--    <p class="loader"></p>-->
-<!--</div>-->
-<!--{% endif %}-->
+
+<div id="loader" class="container px-4 d-flex align-items-center justify-content-center" style="display: none !important;">
+    <p class="loader"></p>
+</div>
+
 {% if 'mp3_ready' in messages %}
 <div class="px-4 my-5 text-center">
     <h4 class="text-body-emphasis">Success! Here is your audio file:</h4>
@@ -47,5 +47,10 @@
 </div>
 {% endif %}
 {% endwith %}
+<script>
+document.getElementById('upload-button').onclick = function() {
+    document.getElementById('loader').style.display = 'block';
+};
+</script>
 </body>
 
