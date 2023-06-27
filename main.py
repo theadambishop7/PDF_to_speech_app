@@ -5,7 +5,7 @@ import os
 import PyPDF2
 
 app = Flask(__name__)
-app.secret_key = 'jkqhwiuh1j34nri1j243u8orih1biwledbqwe'
+app.secret_key = os.getenv("SECRET_KEY")
 path_to_save = "/static/speech-files/speech.mp3"
 
 
